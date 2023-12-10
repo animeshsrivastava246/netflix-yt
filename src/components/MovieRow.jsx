@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import MovieItem from "./MovieItem";
 
 const MovieRow = ({ title, url }) => {
 	const [movies, setMovies] = useState([]);
@@ -20,7 +21,7 @@ const MovieRow = ({ title, url }) => {
 					className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
 				>
 					{movies.map((movie) => (
-						<h1>{movie.title}</h1>
+						<MovieItem key={movie.id} movie={movie} />
 					))}
 				</div>
 			</div>
