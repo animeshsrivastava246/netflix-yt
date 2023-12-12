@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import endpoints, { createImageUrl } from "../services/movieServices";
 
 const Hero = () => {
@@ -14,11 +14,11 @@ const Hero = () => {
 		});
 	}, []);
 
-    // const truncate = (str, length) => {
-    //     if (!str) return "";
-
-    //     return str.length > length ? str.length(0, length) + "..." : str;
-    // };
+	const truncate = (str, len) => {
+		if (!str) return "";
+		var l = str.l
+		return l > len ? str.length(0, len) + "..." : str;
+	};
 
 	if (!movie)
 		return (
@@ -33,10 +33,7 @@ const Hero = () => {
 		<div className="w-full h-[550px] lg:h-[850px]">
 			<div className="w-full h-full">
 				<div className="absolute w-full h-[550px] lg:h-[850px] bg-gradient-to-r from-black">
-					<img
-						src={createImageUrl(backdrop_path, "original")}
-						alt={title}
-					/>
+					<img src={createImageUrl(backdrop_path, "original")} alt={title} />
 					<div className="absolute w-full top-[10%] lg:top-[25%] p-4 md:p-8">
 						<h1 className="text-3xl md:text-6xl font-nsans-bold">{title}</h1>
 						<div className="mt-8 mb-4">
@@ -48,7 +45,9 @@ const Hero = () => {
 							</button>
 						</div>
 						<p className="text-gray-400 text-sm">{release_date}</p>
-						{/* <p className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-300">{truncate(overview, 165)}</p> */}
+						<p className="w-full md:max-w-[80%] lg:max-w-[70%] xl:max-w-[45%] text-gray-300">
+							{truncate(overview, 165)}
+						</p>
 					</div>
 				</div>
 			</div>
