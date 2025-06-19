@@ -10,7 +10,7 @@ const endpoints = {
 };
 
 export function createImageUrl(filename, size) {
-    return `https://image.tmdb.org/t/p/${size}/${filename}`
+    return `https://image.tmdb.org/t/p/${size}/${filename}`;//This needs to be changed to another provider
 }
 
 export default endpoints;
