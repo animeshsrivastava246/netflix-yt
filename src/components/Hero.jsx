@@ -31,6 +31,10 @@ const Hero = () => {
 
 	return (
 		<div className="w-full h-[550px] lg:h-[850px]">
+			{/* Clone banner ribbon */}
+			<div className="absolute top-0 left-0 w-full bg-red-600 text-white text-center py-2 z-50 font-bold uppercase text-sm">
+				This is a clone
+			</div>
 			<div className="w-full h-full">
 				<div className="absolute w-full h-[550px] lg:h-[850px] bg-gradient-to-r from-black">
 					<img src={createImageUrl(backdrop_path, "original")} alt={title} />
