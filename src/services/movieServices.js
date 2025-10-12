@@ -8,7 +8,7 @@ const endpoints = {
     comedy: `${baseUrl}/search/movie?api_key=${key}&language=en-US&query=comedy&page=1&include_adult=true`,
     upcoming: `${baseUrl}/movie/upcoming?api_key=${key}`,
 };
-
+// This movie service needs to be changed to a new provider, tmdb is down
 export function createImageUrl(filename, size) {
     return `https://image.tmdb.org/t/p/${size}/${filename}`;//This needs to be changed to another provider
 }
