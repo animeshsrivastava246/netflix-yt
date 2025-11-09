@@ -1,12 +1,9 @@
-# React + Vite
+# Netflix - YT
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple UI of Netflix where you can favourite the titles to your account
 
-Currently, two official plugins are available:
+#### Kindly note that this UI clone is only for educational purpose not for any commercial or any promotional use!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Update Coming:- API for movie/series
 
-# Update Coming:- API for movie/series
-
-- The data will now be given in a refined format and it will be dynamic!
+- The #DATA will now be given in a refined format and it will be dynamic!
