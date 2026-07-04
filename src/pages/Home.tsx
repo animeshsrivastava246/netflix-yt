@@ -7,11 +7,12 @@ const Home = () => {
 		<div className="bg-black text-white min-h-screen pb-12">
 			<Hero />
 			<div className="-mt-12 md:-mt-24 lg:-mt-32 relative z-40">
-				<MovieRow title="upcoming" url={endpoints.upcoming} />
-				<MovieRow title="trending" url={endpoints.trending} />
-				<MovieRow title="top rated" url={endpoints.topRated} />
-				<MovieRow title="comedy" url={endpoints.comedy} />
-				<MovieRow title="popular" url={endpoints.popular} />
+				<MovieRow title="upcoming movies" url={endpoints.upcoming} />
+				<MovieRow title="trending TV shows" url={endpoints.trendingTv} />
+				<MovieRow title="popular movies" url={endpoints.popular} />
+				<MovieRow title="top rated TV series" url={endpoints.topRatedTv} />
+				<MovieRow title="comedy movies" url={endpoints.comedy} />
+				<MovieRow title="popular TV shows" url={endpoints.popularTv} />
 			</div>
 		</div>
 	);

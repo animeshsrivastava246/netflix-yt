@@ -4,10 +4,11 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite --host",
-		"build": "tsc && vite build",
-		"lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"preview": "vite preview"
+		"start": "bunx --bun vite --host",
+		"build": "tsc && bunx --bun vite build",
+		"preview": "bunx --bun vite preview",
+		"clean": "rm -rf node_modules dist && bun install && bun run build",
+		"lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0 && bunx fallow health"
 	},
 	"dependencies": {
 		"axios": "^1.7.9",
@@ -15,22 +16,27 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-icons": "^5.4.0",
-		"react-router-dom": "^7.1.1",
-		"tailwind-scrollbar-hide": "^2.0.0"
+		"react-router-dom": "^7.1.1"
 	},
 	"devDependencies": {
 		"@types/node": "^22.10.2",
 		"@types/react": "^19.0.2",
 		"@types/react-dom": "^19.0.2",
-		"@vitejs/plugin-react-swc": "^4.3.1",
+		"@typescript-eslint/eslint-plugin": "^8.62.1",
+		"@typescript-eslint/parser": "^8.62.1",
+		"@vitejs/plugin-react": "^6.0.3",
 		"autoprefixer": "^10.4.16",
+		"baseline-browser-mapping": "^2.10.42",
+		"caniuse-lite": "^1.0.30001800",
 		"eslint": "^8.53.0",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.4.4",
 		"postcss": "^8.5.14",
+		"tailwind-scrollbar-hide": "^2.0.0",
 		"tailwindcss": "^3.3.6",
 		"typescript": "^5.7.2",
+		"update-browserslist-db": "^1.2.3",
 		"vite": "^8.0.16"
 	}
 }

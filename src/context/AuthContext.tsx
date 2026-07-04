@@ -4,15 +4,16 @@ import {
 	signInWithEmailAndPassword,
 	signOut,
 	onAuthStateChanged,
-	User,
 	UserCredential,
 } from "firebase/auth";
 import { auth, db } from "../services/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 interface AuthContextType {
-	user: User | null;
-	signUp: (email: string, password: string) => Promise<UserCredential>;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	user: any;
+	isLoading: boolean;
+	signUp: (email: string, password: string) => Promise<void>;
 	logIn: (email: string, password: string) => Promise<UserCredential>;
 	logOut: () => Promise<void>;
 }
@@ -20,13 +21,14 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthContextProvider({ children }: { children: ReactNode }) {
-	const [user, setUser] = useState<User | null>(null);
-	const [loading, setLoading] = useState(true);
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const [user, setUser] = useState<any>(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 			setUser(currentUser);
-			setLoading(false);
+			setIsLoading(false);
 		});
 
 		return () => {
@@ -34,33 +36,29 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
 		};
 	}, []);
 
-	async function signUp(email: string, password: string): Promise<UserCredential> {
-		const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-		await setDoc(doc(db, "users", email), {
+	async function signUp(email: string, password: string) {
+		const credential = await createUserWithEmailAndPassword(auth, email, password);
+		await setDoc(doc(db, "users", credential.user.email!), {
 			favShows: [],
 		});
-		return userCredential;
 	}
-
-	function logIn(email: string, password: string): Promise<UserCredential> {
+	function logIn(email: string, password: string) {
 		return signInWithEmailAndPassword(auth, email, password);
 	}
-
-	function logOut(): Promise<void> {
+	function logOut() {
 		return signOut(auth);
 	}
-
 	return (
-		<AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
-			{!loading && children}
+		<AuthContext.Provider value={{ user, isLoading, signUp, logIn, logOut }}>
+			{children}
 		</AuthContext.Provider>
 	);
 }
 
-export function UserAuth(): AuthContextType {
+export function UserAuth() {
 	const context = useContext(AuthContext);
 	if (!context) {
-		throw new Error("UserAuth must be used within an AuthContextProvider");
+		throw new Error("UserAuth must be used within AuthContextProvider");
 	}
 	return context;
 }
