@@ -12,12 +12,12 @@ const {
 } = import.meta.env;
 
 const firebaseConfig = {
-	apiKey: VITE_FIREBASE_API_KEY,
-	authDomain: VITE_FIREBASE_AUTH_DOMAIN,
-	projectId: VITE_FIREBASE_PROJECT_ID,
-	storageBucket: VITE_FIREBASE_STORAGE_BUCKET,
-	messagingSenderId: VITE_FIREBASE_MESSAGING_SENDER_ID,
-	appId: VITE_FIREBASE_API_ID,
+	apiKey: VITE_FIREBASE_API_KEY as string,
+	authDomain: VITE_FIREBASE_AUTH_DOMAIN as string,
+	projectId: VITE_FIREBASE_PROJECT_ID as string,
+	storageBucket: VITE_FIREBASE_STORAGE_BUCKET as string,
+	messagingSenderId: VITE_FIREBASE_MESSAGING_SENDER_ID as string,
+	appId: VITE_FIREBASE_API_ID as string,
 };
 
 // Initialize Firebase
