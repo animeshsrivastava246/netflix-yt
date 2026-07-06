@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getDetailsUrl, getSeasonDetailsUrl, createImageUrl, Movie } from "../../services/movieServices";
+import { getDetailsUrl, getSeasonDetailsUrl, createImageUrl, Movie, formatAestheticDate } from "../../services/movieServices";
 import { FaTimes, FaPlay, FaPlus, FaCheck } from "react-icons/fa";
 import { doc, onSnapshot, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../services/firebase";
@@ -185,7 +185,7 @@ interface DetailHeroProps {
 // fallow-ignore-next-line complexity
 const DetailHero = ({ data, title, onClose, isFav, onToggleFavorite }: DetailHeroProps) => (
 	<div className="relative h-64 sm:h-96">
-		<div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent z-10" />
+		<div className="absolute inset-0 bg-linear-to-t from-[#181818] via-transparent to-transparent z-10" />
 		<img
 			src={createImageUrl(data.backdrop_path || data.poster_path, "original") || "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=1080"}
 			alt={title}
@@ -228,18 +228,24 @@ interface MetadataHeaderProps {
 	seasonsCount?: number;
 }
 
+// fallow-ignore-next-line complexity
 const MetadataHeader = ({ rating, releaseYear, runtime, seasonsCount }: MetadataHeaderProps) => (
-	<div className="flex flex-wrap items-center gap-3 text-sm">
-		<span className="text-green-400 font-nsans-bold">{rating} Rating</span>
-		<span>{releaseYear}</span>
-		{runtime && <span>{runtime}</span>}
+	<div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+		<span className="text-green-500 font-nsans-bold tracking-wider">{Number(rating) > 0 ? `${Math.round(Number(rating) * 10)}% Match` : "98% Match"}</span>
+		{releaseYear && (
+			<span className="px-2 py-0.5 rounded bg-neutral-800 border border-neutral-700 text-xs font-nsans-medium text-neutral-300">
+				{releaseYear}
+			</span>
+		)}
+		{runtime && <span className="text-neutral-400">{runtime}</span>}
 		{seasonsCount && (
-			<span className="bg-neutral-800 px-2 py-0.5 rounded text-xs font-nsans-medium text-neutral-300">
+			<span className="bg-red-950/40 text-red-500 border border-red-900/40 px-2 py-0.5 rounded text-xs font-nsans-bold">
 				{seasonsCount} {seasonsCount === 1 ? "Season" : "Seasons"}
 			</span>
 		)}
 	</div>
 );
+
 
 interface MetadataSidebarProps {
 	genres: Genre[];
@@ -311,7 +317,7 @@ const EpisodeCard = ({ ep }: { ep: Episode }) => (
 			<img
 				src={createImageUrl(ep.still_path, "w300")}
 				alt={ep.name}
-				className="w-full md:w-40 h-24 object-cover rounded-md flex-shrink-0"
+				className="w-full md:w-40 h-24 object-cover rounded-md shrink-0"
 			/>
 		)}
 		<div className="space-y-2">
@@ -319,7 +325,7 @@ const EpisodeCard = ({ ep }: { ep: Episode }) => (
 				<h4 className="font-nsans-bold text-sm sm:text-base text-white">
 					{ep.episode_number}. {ep.name}
 				</h4>
-				<span className="text-xs text-neutral-500 flex-shrink-0">{ep.air_date}</span>
+				<span className="text-xs text-neutral-500 shrink-0">{formatAestheticDate(ep.air_date)}</span>
 			</div>
 			<p className="text-xs sm:text-sm text-neutral-400 leading-relaxed line-clamp-3">
 				{ep.overview || "No overview available for this episode."}
@@ -401,7 +407,7 @@ const MovieDetailModal = ({ id, isTv, onClose }: MovieDetailModalProps) => {
 
 	return createPortal(
 		<div
-			className={`fixed inset-0 bg-black/85 z-[9998] overflow-y-auto backdrop-blur-md transition-opacity duration-500 ${
+			className={`fixed inset-0 bg-black/85 z-9998 overflow-y-auto backdrop-blur-md transition-opacity duration-500 ${
 				animateShow ? "opacity-100" : "opacity-0"
 			}`}
 			onClick={onClose}

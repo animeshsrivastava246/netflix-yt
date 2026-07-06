@@ -1,6 +1,103 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-nsans-light: "Nsans Light", "Segoe UI", sans-serif;
+  --font-nsans-regular: "Nsans Regular", "Segoe UI", sans-serif;
+  --font-nsans-medium: "Nsans Medium", "Segoe UI", sans-serif;
+  --font-nsans-bold: "Nsans Bold", "Segoe UI", sans-serif;
+
+  --transition-timing-function-butter: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-timing-function-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-timing-function-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --animate-fade-in: fade-in 0.4s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  --animate-fade-in-down: fade-in-down 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  --animate-fade-in-scale: fade-in-scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-slide-in-left: slide-in-left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  --animate-hero-text: hero-text 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  --animate-tudum-ripple-1: tudum-ripple-1 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  --animate-tudum-ripple-2: tudum-ripple-2 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+  --animate-tudum-ripple-3: tudum-ripple-3 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+  --animate-tudum-bar: tudum-bar 0.8s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-pulse-red: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-scale-in: scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-chevron-left: chevron-bounce-left 0.6s ease-in-out infinite;
+  --animate-chevron-right: chevron-bounce-right 0.6s ease-in-out infinite;
+  --animate-spin-slow: spin 3s linear infinite;
+  --animate-fade-in-200: fade-in 0.4s ease-out 0.2s forwards;
+  --animate-fade-in-400: fade-in 0.4s ease-out 0.4s forwards;
+  --animate-fade-in-up-200: fade-in-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+  --animate-fade-in-up-400: fade-in-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+  --animate-fade-in-up-600: fade-in-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in-down {
+    0% { opacity: 0; transform: translateY(-24px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in-scale {
+    0% { opacity: 0; transform: scale(0.92); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slide-in-left {
+    0% { opacity: 0; transform: translateX(-32px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes hero-text {
+    0% { opacity: 0; transform: translateY(32px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes tudum-ripple-1 {
+    0% { width: 0px; height: 0px; opacity: 1; }
+    100% { width: 400px; height: 400px; opacity: 0; }
+  }
+  @keyframes tudum-ripple-2 {
+    0% { width: 0px; height: 0px; opacity: 1; }
+    100% { width: 600px; height: 600px; opacity: 0; }
+  }
+  @keyframes tudum-ripple-3 {
+    0% { width: 0px; height: 0px; opacity: 1; }
+    100% { width: 900px; height: 900px; opacity: 0; }
+  }
+  @keyframes tudum-bar {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.7; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes pulse-red {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes scale-in {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes chevron-bounce-left {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-4px); }
+  }
+  @keyframes chevron-bounce-right {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+}
 
 @font-face {
 	font-family: "Nsans Light";
@@ -74,15 +171,22 @@ body {
 	color: white;
 }
 
-/* Utility layer for ease-butter used inline */
-@layer utilities {
-	.ease-butter {
-		transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	}
-	.ease-spring {
-		transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
-	}
-	.ease-snappy {
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-	}
+/* Custom scrollbar hide utility for rows */
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+.scrollbar-hide {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom transitions and utility helpers */
+.ease-butter {
+	transition-timing-function: var(--ease-butter);
+}
+.ease-spring {
+	transition-timing-function: var(--ease-spring);
+}
+.ease-snappy {
+	transition-timing-function: var(--ease-snappy);
 }

@@ -38,10 +38,10 @@ const ProfileHeader = ({ email }: { email: string }) => (
 	<div className="relative w-full h-[400px] md:h-[500px]">
 		<img
 			className="block w-full h-full object-cover opacity-60"
-			src="https://assets.nflxext.com/ffe/siteui/vlv3/b4c7f092-0488-48b7-854d-ca055a84fb4f/5b22968d-b94f-44ec-bea3-45dcf457f29e/IN-en-20231204-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+			src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920"
 			alt="Netflix background"
 		/>
-		<div className="bg-gradient-to-t from-black via-black/45 to-transparent absolute inset-0" />
+		<div className="bg-linear-to-t from-black via-black/45 to-transparent absolute inset-0" />
 		<div className="absolute bottom-[10%] left-4 md:left-12 lg:left-16 p-4 z-25">
 			<h1 className="text-3xl md:text-5xl lg:text-6xl font-nsans-bold my-2 drop-shadow-md">
 				My Shows

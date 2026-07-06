@@ -52,7 +52,7 @@ const AuthBackground = () => (
 	<>
 		<img
 			className="hidden sm:block absolute inset-0 w-full h-full object-cover opacity-50"
-			src="https://assets.nflxext.com/ffe/siteui/vlv3/b4c7f092-0488-48b7-854d-ca055a84fb4f/5b22968d-b94f-44ec-bea3-45dcf457f29e/IN-en-20231204-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+			src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920"
 			alt="Background"
 		/>
 		<div className="absolute inset-0 bg-black/60 sm:bg-black/40" />

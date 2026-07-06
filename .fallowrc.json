@@ -3,6 +3,8 @@
   "ignoreDependencies": [
     "baseline-browser-mapping",
     "caniuse-lite",
-    "update-browserslist-db"
+    "update-browserslist-db",
+    "tailwindcss",
+    "@tailwindcss/vite"
   ]
 }

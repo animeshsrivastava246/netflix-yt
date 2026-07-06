@@ -14,12 +14,14 @@ interface MovieItemCardProps {
 	like: boolean;
 	onLike: (e: React.MouseEvent) => void;
 	onClick: () => void;
+	releaseYear?: string;
 }
 
-const MovieItemCard = ({ backdropPath, posterPath, displayName, like, onLike, onClick }: MovieItemCardProps) => (
+// fallow-ignore-next-line complexity
+const MovieItemCard = ({ backdropPath, posterPath, displayName, like, onLike, onClick, releaseYear }: MovieItemCardProps) => (
 	<div
 		onClick={onClick}
-		className="relative w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px] inline-block rounded-lg overflow-hidden cursor-pointer m-1.5 sm:m-2 group/card"
+		className="relative w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px] rounded-lg overflow-hidden cursor-pointer m-1.5 sm:m-2 group/card"
 		style={{ transition: "transform 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}
 	>
 		{/* Card image */}
@@ -37,7 +39,7 @@ const MovieItemCard = ({ backdropPath, posterPath, displayName, like, onLike, on
 			/>
 
 			{/* Overlay on hover */}
-			<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 ease-snappy flex flex-col justify-between p-2 sm:p-3">
+			<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 ease-snappy flex flex-col justify-between p-2 sm:p-3">
 				{/* Like button */}
 				<div
 					onClick={onLike}
@@ -50,10 +52,17 @@ const MovieItemCard = ({ backdropPath, posterPath, displayName, like, onLike, on
 					)}
 				</div>
 
-				{/* Title */}
-				<p className="whitespace-normal text-[10px] sm:text-xs font-nsans-bold text-white text-center leading-tight drop-shadow-lg">
-					{displayName}
-				</p>
+				{/* Title and Release Year */}
+				<div className="text-center">
+					<p className="whitespace-normal text-[10px] sm:text-xs font-nsans-bold text-white leading-tight drop-shadow-lg">
+						{displayName}
+					</p>
+					{releaseYear && (
+						<p className="text-[8px] sm:text-[9px] text-neutral-300 mt-1 font-nsans-medium drop-shadow-md">
+							{releaseYear}
+						</p>
+					)}
+				</div>
 
 				{/* Spacer */}
 				<div className="h-1" />
@@ -67,8 +76,9 @@ const MovieItem = ({ movie }: { movie: Movie }) => {
 	const [showModal, setShowModal] = useState(false);
 	const { backdrop_path, poster_path } = movie;
 	const { user } = UserAuth();
-	const { isTv, displayName } = getMovieMetadata(movie);
+	const { isTv, displayName, release } = getMovieMetadata(movie);
 	const navigate = useNavigate();
+	const releaseYear = release ? release.split("-")[0] : "";
 
 	const markFavShow = async (e: React.MouseEvent) => {
 		e.stopPropagation();
@@ -93,6 +103,7 @@ const MovieItem = ({ movie }: { movie: Movie }) => {
 				like={like}
 				onLike={markFavShow}
 				onClick={() => setShowModal(true)}
+				releaseYear={releaseYear}
 			/>
 			{showModal && (
 				<MovieDetailModal id={movie.id} isTv={isTv} onClose={() => setShowModal(false)} />

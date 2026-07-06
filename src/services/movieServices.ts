@@ -61,4 +61,22 @@ export function getMovieMetadata(movie: Movie) {
 	};
 }
 
+// fallow-ignore-next-line complexity
+export function formatAestheticDate(dateStr: string): string {
+	if (!dateStr) return "";
+	try {
+		const parts = dateStr.split("-");
+		if (parts.length !== 3) return dateStr;
+		const date = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+		if (isNaN(date.getTime())) return dateStr;
+		return date.toLocaleDateString("en-US", {
+			month: "short",
+			day: "numeric",
+			year: "numeric",
+		});
+	} catch {
+		return dateStr;
+	}
+}
+
 export default endpoints;

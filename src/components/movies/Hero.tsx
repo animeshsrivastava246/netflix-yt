@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import endpoints, { createImageUrl } from "../../services/movieServices";
-import { Movie, getMovieMetadata } from "../../services/movieServices";
+import { Movie, getMovieMetadata, formatAestheticDate } from "../../services/movieServices";
 import MovieDetailModal from "./MovieDetailModal";
+import { FaPlay } from "react-icons/fa";
 
 const truncate = (str: string, len: number): string => {
 	if (!str) return "";
@@ -21,11 +22,11 @@ const HeroBanner = ({ movie, onMoreInfo }: HeroBannerProps) => {
 	return (
 		<div className="w-full h-[60vh] sm:h-[70vh] lg:h-[90vh] relative overflow-hidden bg-black">
 			{/* Bottom fade */}
-			<div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none" />
+			<div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-black to-transparent z-20 pointer-events-none" />
 			{/* Side fade */}
-			<div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent z-10 pointer-events-none" />
+			<div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/50 to-transparent z-10 pointer-events-none" />
 			{/* Top fade */}
-			<div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black/60 to-transparent z-10 pointer-events-none" />
+			<div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-black/60 to-transparent z-10 pointer-events-none" />
 
 			<img
 				className="w-full h-full object-cover object-top animate-fade-in"
@@ -43,18 +44,18 @@ const HeroBanner = ({ movie, onMoreInfo }: HeroBannerProps) => {
 						onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(displayName)}`, "_blank", "noopener,noreferrer")}
 						className="capitalize bg-white hover:bg-neutral-200 text-black py-2 sm:py-2.5 px-5 sm:px-8 rounded font-nsans-bold text-sm sm:text-base flex items-center gap-2 shadow-xl transition-all duration-300 ease-butter hover:scale-105 active:scale-95 cursor-pointer"
 					>
-						&#9658; Play
+						<FaPlay /> Play
 					</button>
 					<button
 						onClick={onMoreInfo}
-						className="capitalize bg-neutral-600/60 hover:bg-neutral-600/90 text-white py-2 sm:py-2.5 px-5 sm:px-8 rounded font-nsans-bold text-sm sm:text-base shadow-xl transition-all duration-300 ease-butter hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-sm"
+						className="capitalize bg-neutral-600/60 hover:bg-neutral-600/90 text-white py-2 sm:py-2.5 px-5 sm:px-8 rounded font-nsans-bold text-sm sm:text-base shadow-xl transition-all duration-300 ease-butter hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-sm flex items-center justify-center"
 					>
-						&#9432; More Info
+						<span className="flex h-5 w-5 items-center justify-center rounded-full border border-white text-xs font-bold text-white mr-2">i</span>More Info
 					</button>
 				</div>
 
-				<p className="text-gray-400 text-xs sm:text-sm mb-2 opacity-0 animate-fade-in-up-400">
-					{release}
+				<p className="text-neutral-400 text-xs sm:text-sm font-nsans-medium mb-2 opacity-0 animate-fade-in-up-400">
+					{formatAestheticDate(release)}
 				</p>
 				<p className="w-full sm:max-w-[70%] lg:max-w-[45%] text-gray-200 text-xs sm:text-sm lg:text-base leading-relaxed drop-shadow opacity-0 animate-fade-in-up-600">
 					{truncate(overview, 165)}
@@ -66,8 +67,8 @@ const HeroBanner = ({ movie, onMoreInfo }: HeroBannerProps) => {
 
 const HeroSkeleton = () => (
 	<div className="w-full h-[60vh] sm:h-[70vh] lg:h-[90vh] relative overflow-hidden bg-neutral-900">
-		<div className="absolute inset-0 bg-gradient-to-r from-neutral-800 to-neutral-900 animate-shimmer bg-[length:200%_100%]" />
-		<div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent" />
+		<div className="absolute inset-0 bg-linear-to-r from-neutral-800 to-neutral-900 animate-shimmer bg-size-[200%_100%]" />
+		<div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-black to-transparent" />
 		<div className="absolute w-full bottom-[22%] px-4 sm:px-8 lg:px-16 space-y-4">
 			<div className="h-10 sm:h-14 lg:h-20 w-64 sm:w-96 bg-neutral-800/60 rounded-lg animate-pulse" />
 			<div className="flex gap-3">

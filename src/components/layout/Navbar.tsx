@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import { FaSearch, FaTimes } from "react-icons/fa";
+import netflixLogo from "../../assets/netflix-logo.svg";
 
 const useScrollNavbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -66,9 +67,8 @@ interface MobileSearchDrawerProps {
 
 const MobileSearchDrawer = ({ open, searchQuery, setSearchQuery, onSubmit, inputRef }: MobileSearchDrawerProps) => (
 	<div
-		className={`sm:hidden overflow-hidden transition-all duration-400 ease-butter ${
-			open ? "max-h-16 opacity-100" : "max-h-0 opacity-0"
-		}`}
+		className={`sm:hidden overflow-hidden transition-all duration-400 ease-butter ${open ? "max-h-16 opacity-100" : "max-h-0 opacity-0"
+			}`}
 	>
 		<form onSubmit={onSubmit} className="px-4 pb-3">
 			<div className="relative flex items-center">
@@ -139,16 +139,13 @@ const Navbar = () => {
 
 	return (
 		<nav
-			className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-butter ${
-				isScrolled ? "bg-black/95 backdrop-blur-md shadow-lg shadow-black/50" : "bg-gradient-to-b from-black/70 to-transparent"
-			}`}
+			className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-butter ${isScrolled ? "bg-black/95 backdrop-blur-md shadow-lg shadow-black/50" : "bg-linear-to-b from-black/70 to-transparent"
+				}`}
 		>
 			<div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-3 sm:py-4">
 				<div className="flex items-center gap-4 sm:gap-6 min-w-0">
-					<Link to="/" className="flex-shrink-0">
-						<span className="uppercase text-red-600 font-nsans-bold cursor-pointer text-2xl sm:text-3xl lg:text-4xl xl:text-5xl tracking-tighter transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(229,9,20,0.7)] select-none">
-							Netflix
-						</span>
+					<Link to="/" className="shrink-0">
+						<img className="w-24 sm:w-28 md:w-36" src={netflixLogo} alt="Netflix" />
 					</Link>
 					<div className="hidden sm:block">
 						<SearchForm
@@ -160,7 +157,7 @@ const Navbar = () => {
 						/>
 					</div>
 				</div>
-				<div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+				<div className="flex items-center gap-2 sm:gap-4 shrink-0">
 					<button
 						onClick={toggleMobileSearch}
 						className="sm:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors duration-200 cursor-pointer"
