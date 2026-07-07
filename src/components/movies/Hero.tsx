@@ -50,7 +50,7 @@ const HeroBanner = ({ movie, onMoreInfo }: HeroBannerProps) => {
 						onClick={onMoreInfo}
 						className="capitalize bg-neutral-600/60 hover:bg-neutral-600/90 text-white py-2 sm:py-2.5 px-5 sm:px-8 rounded font-nsans-bold text-sm sm:text-base shadow-xl transition-all duration-300 ease-butter hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-sm flex items-center justify-center"
 					>
-						<span className="flex h-5 w-5 items-center justify-center rounded-full border border-white text-xs font-bold text-white mr-2">i</span>More Info
+						<span className="flex h-5 w-5 justify-center rounded-full border border-white text-xs font-bold text-white mr-2">&iexcl;</span>More Info
 					</button>
 				</div>
 
