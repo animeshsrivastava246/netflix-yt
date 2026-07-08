@@ -1,0 +1,20 @@
+# Netflix Clone Animesh
+> A high-performance Netflix clone built by Animesh with React, Firebase, and TMDB API.
+
+## Project Overview
+This project is a fully-featured, production-ready clone of Netflix. It features buttery smooth UI, search functionality, custom profiles, and watchlist tracking.
+
+## Technical Stack
+- **Frontend**: React, Vite, TypeScript, TailwindCSS
+- **Database & Auth**: Firebase (Authentication & Firestore)
+- **Data Source**: TMDB API (The Movie Database)
+
+## Author Information
+- **Author**: Animesh Srivastava
+- **Project URL**: [netflix-yt Repository](https://github.com/animeshsrivastava246/netflix-yt)
+
+## Core Capabilities
+- Stream movie and TV show data dynamically.
+- Filter and search for movies by name, genre, and trending status.
+- Personal watchlists saved to Firestore per user.
+- Responsive design tailored for mobile, tablet, and desktop screens.
